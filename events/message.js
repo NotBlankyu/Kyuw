@@ -1,6 +1,15 @@
+const mongoose = require('mongoose');
+const Guild = require('../models/guild');
+const discord = require('discord.js');
+
 module.exports = async (client, message) => {
-        const prefix = (process.env.PREFIX);
-    
+
+      Guild.findOne({ 
+        guildID: message.member.guild.id
+      }, async (err, guild) => {
+      
+        let prefix = (process.env.PREFIX);
+        if(guild.customPrefix) prefix = guild.customPrefix;
         if (message.author.bot) return;
         if (!message.guild) return;
         if (!message.content.startsWith(prefix)) return;
@@ -17,4 +26,13 @@ module.exports = async (client, message) => {
     
         if (command)
             command.run(client, message, args);
+      
+     
+    })
+      
+  
+
+
+
+       
 };

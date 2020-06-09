@@ -1,14 +1,12 @@
-const http = require('http');
 const express = require('express');
 const app = express();
 app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Recebido");
+  const ping = new Date();
+  ping.setHours(ping.getHours() - 3);
+  console.log(`Ping recebido às ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
   response.sendStatus(200);
 });
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000); // Código que deixa o Bot Online
+app.listen(process.env.PORT); // Recebe solicitações que o deixa online
 const { Client, Collection } = require('discord.js');
 const { config } = require('dotenv');
 const fs = require('fs');
