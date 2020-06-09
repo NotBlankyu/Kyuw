@@ -1,0 +1,39 @@
+const Discord = require("discord.js");
+
+module.exports = {
+  
+  name: 'serverinfo',
+    category: 'info',
+    description: 'Shows the current server information.',
+    usage: `${(process.env.PREFIX)}serverinfo`,
+  
+  run : async (client, message, args) => {
+   let invite = await message.channel.createInvite(
+  {
+    maxAge: 86400, // maximum time for the invite, in milliseconds
+    maxUses: 1 // maximum times it can be used
+  },
+  `Requested with command by ${message.author.tag}`
+)
+   let user = message.author;
+  let Embed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle(message.guild)
+	.setURL(`https://discord.gg/${invite.code}`)
+	.setAuthor(message.author.username, message.author.avatarURL())
+	.setDescription('Server Info')
+	.setThumbnail(`https://cdn.discordapp.com/icons/${message.guild.id}/${message.guild.icon}.png`)
+	.addFields(
+		{ name: 'Server Id', value: message.guild.id, inline: false },
+		{ name: 'Server Owner', value: message.guild.owner.user.username, inline: false },
+    { name: 'Server Region', value: message.guild.region, inline: false },
+    { name: 'Server Members', value: message.guild.members.cache.size, inline: false },
+    { name: 'Created At', value: message.guild.createdAt, inline: false },
+    { name: 'Joined At', value: message.member.joinedAt, inline: false },
+    
+	)
+	.setTimestamp()
+	.setFooter('dh', 'https://i.imgur.com/FPc54Tr.jpg');
+  message.channel.send(Embed);
+  }
+};
