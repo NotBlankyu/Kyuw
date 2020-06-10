@@ -8,7 +8,7 @@ module.exports = {
   name: 'play',
     category: 'Music',
     description: 'Plays a youtube link',
-    usage: `${(process.env.PREFIX)}play <link>`,
+    usage: `play <link>`,
   
   run : async (client, message, args) => {
   

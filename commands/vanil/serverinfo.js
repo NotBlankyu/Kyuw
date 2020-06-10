@@ -5,7 +5,7 @@ module.exports = {
   name: 'serverinfo',
     category: 'info',
     description: 'Shows the current server information.',
-    usage: `${(process.env.PREFIX)}serverinfo`,
+    usage: `serverinfo`,
   
   run : async (client, message, args) => {
    let invite = await message.channel.createInvite(

@@ -6,7 +6,7 @@ module.exports = {
   name: 'unmute',
     category: 'Moderation',
     description: 'To unmute someone.',
-    usage: `${(process.env.PREFIX)}unmute <@user>`,
+    usage: `unmute <@user>`,
   
   run : async (client, message, args) => {
   if(!message.member.hasPermission("MUTE_MEMBERS") )

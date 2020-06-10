@@ -4,7 +4,7 @@ module.exports = {
   name: "clear",
   category: "Moderation",
   description: "Cleans up to 99 messages",
-  usage: `${process.env.PREFIX}clear <1-99>`,
+  usage: `clear <1-99>`,
 
   run: async (client, message, args) => {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))

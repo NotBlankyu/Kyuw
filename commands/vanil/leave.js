@@ -4,7 +4,7 @@ module.exports = {
   name: 'leave',
     category: 'Music',
     description: 'Bot leaves the channel.',
-    usage: `${(process.env.PREFIX)}leave`,
+    usage: `leave`,
   
   run : async (client, message, args) => {
 

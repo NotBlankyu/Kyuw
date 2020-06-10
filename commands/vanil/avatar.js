@@ -4,10 +4,10 @@ module.exports={
   name: 'avatar',
     category: 'info',
     description: 'Returns the avatar',
-    usage: `${(process.env.PREFIX)}avatar <@user>`,
+    usage: `avatar [@user}`,
   
   run : async (client, message, args) => {
-  var user = message.mentions.users.first();
+  var user = message.mentions.users.first() ||message.member.user;
   const Embed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle(`${user.username} Avatar`)

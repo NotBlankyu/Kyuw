@@ -6,7 +6,7 @@ module.exports={
 name: 'prefix',
     category: 'Configuration',
     description: 'Allows to change the prefix settings.',
-    usage: `${(process.env.PREFIX)}prefix [set]`,
+    usage: `prefix [set <newprefix>]`,
 
 run : async (client, message, args) => {
   if(message.member.id !=process.env.OWNER){

@@ -5,7 +5,7 @@ module.exports = {
   name: 'invite',
     category: 'info',
     description: 'Returns the invite link of the bot',
-    usage: `${(process.env.PREFIX)}invite`,
+    usage: `invite`,
   
   
   run : async (client, message, args) => {

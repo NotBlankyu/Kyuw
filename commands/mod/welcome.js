@@ -6,7 +6,7 @@ module.exports={
 name: 'welcome',
     category: 'Configuration',
     description: 'Allows to change the welcome settings.',
-    usage: `${(process.env.PREFIX)}welcome <set/info/on/off>`,
+    usage: `welcome <set/info/on/off>`,
 
 run : async (client, message, args) => {
   if(message.member.id !=process.env.OWNER){

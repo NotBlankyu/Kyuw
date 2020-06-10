@@ -5,7 +5,7 @@ module.exports = {
   name: 'status',
     category: 'OwnerOnly',
     description: 'Allows to change the bot status.',
-    usage: `${(process.env.PREFIX)}ping`,
+    usage: `status [text]`,
   
   run : async (client, message, args) => {
   if(message.member.id != '316999783782809600' ){

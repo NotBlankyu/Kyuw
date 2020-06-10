@@ -6,7 +6,7 @@ module.exports = {
     aliases: ['h'],
     category: 'info',
     description: 'Displays bot help message.',
-    usage: `${(process.env.PREFIX)}help [commandName]`,
+    usage: `help [commandName]`,
     run: async (client, message, args) => {
         if (args[0]) {
             return getCMD(client, message, args[0]);
@@ -21,12 +21,17 @@ function helpMSG(client, message) {
         .setColor(process.env.COLOR)
         .setTitle('Help Menu')
         .setThumbnail(client.user.avatarURL())
-    .setDescription('Hi my prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now.')
-    .addField('Commands','-**ban** \n-**unban**\n-**mute**\n-**unmute**\n-**clear**\n-**ping**\n-**avatar**\n-**invite**\n-**serverinfo**\n-**kiss**\n-**play**\n-**stop**\n-**leave**\n-**leave**\n-**welcome**')
-		
-	
+    .setDescription('Hi my default prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now. If you want see the custom prefix use ``prefix``')
+    .addFields(
+		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``',  },
+		{ name: 'Configuration', value: '``welcome``, ``prefix``',inline: true },
+    { name: 'Information', value: '``serverinfo``, ``ping``, ``invite``, ``avatar``',inline: true  },
+    { name: 'Fun', value: '``kiss``, ``punch``',inline: true},
+  	{ name: 'Music', value: '``play``, ``stop``, ``leave``',inline: true },
+    { name: 'Economy', value: '``balance``, ``daily``',inline: true })
+    
     .setFooter(`\n\nTo see more info about a specific command, please type \`${process.env.PREFIX}help <command>\` without the \`<>\``)
-    .setAuthor(message.author.username, message.author.avatarURL())
+    .setAuthor(message.author.username, message.author.avatarURL());
         
     message.channel.send(embed);
 }

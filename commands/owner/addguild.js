@@ -8,7 +8,7 @@ module.exports={
   name: 'addguild',
     category: 'OwnerOnly',
     description: 'Adds a guild to the database.',
-    usage: `${(process.env.PREFIX)}addguild`,
+    usage: `addguild`,
   
   run : async (client, message, args) => {
   if(message.member.id != process.env.OWNER ) return;

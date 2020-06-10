@@ -4,7 +4,7 @@ module.exports = {
   name: "ban",
   category: "Moderation",
   description: "Bans someone.",
-  usage: `${process.env.PREFIX}ban <@user>`,
+  usage: `ban <@user>`,
 
   run: async (client, message, args) => {
     if (!message.member.hasPermission("BAN_MEMBERS"))

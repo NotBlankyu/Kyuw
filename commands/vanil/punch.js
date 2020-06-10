@@ -4,7 +4,7 @@ module.exports = {
   name: 'punch',
     category: 'fun',
     description: 'punch someone else',
-    usage: `${(process.env.PREFIX)}punch <@user>`,
+    usage: `punch <@user>`,
   
   run : async (client, message, args) => {
   let mention = message.mentions.members.first();

@@ -6,7 +6,7 @@ module.exports = {
   name: 'stop',
     category: 'Music',
     description: 'Stops the playing song.',
-    usage: `${(process.env.PREFIX)}stop`,
+    usage: `stop`,
   
   run : async (client, message, args) => {
 function play(connection, message){
