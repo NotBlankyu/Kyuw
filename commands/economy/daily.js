@@ -7,7 +7,7 @@ module.exports={
   name: 'daily',
     category: 'economy',
     description: 'Returns the balance of a user',
-    usage: `${(process.env.PREFIX)}balance`,
+    usage: `${(process.env.PREFIX)}daily`,
   
   run : async (client, message, args) => {
    

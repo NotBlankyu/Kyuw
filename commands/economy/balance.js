@@ -10,13 +10,21 @@ module.exports={
     usage: `${(process.env.PREFIX)}balance`,
   
   run : async (client, message, args) => {
+
+    member = args[0] ||  message.member
+    if(!message.mentions.users.first()){
+      embedMember = message.member.user.username
+    } else{
+      embedMember = message.mentions.users.first().username
+    }
+     
     User.findOne({ 
-        userID: message.member.id
+        userID: member.id
       }, (err, user) => {
       if(!user){
           const newUser = new User({
         _id: mongoose.Types.ObjectId(),
-        userID: message.member.id,
+        userID: member.id,
         gold: 0,
         dailytime:Date.now()
         
@@ -32,7 +40,7 @@ module.exports={
     }else{
   const Embed = new Discord.MessageEmbed()
   	.setColor('#0099ff')
-  	.setTitle( 'User Balance')
+  	.setTitle( `${embedMember} Balance`)
     .addField('Gold coins:',`${user.gold}`)
 	message.channel.send(Embed);
     }             
