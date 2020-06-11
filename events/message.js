@@ -12,6 +12,10 @@ module.exports = async (client, message) => {
         if(guild.customPrefix) prefix = guild.customPrefix;
         if (message.author.bot) return;
         if (!message.guild) return;
+         if(guild.customPrefix){
+            if (message.content.startsWith(`<@!${client.user.id}>`)) return message.channel.send(`Hi my name is dh and my prefix is **${guild.customPrefix}**`);
+         }
+         if (message.content.startsWith(client.user.id)) return message.channel.send(`Hi my name is dh and my prefix is **${process.env.PREFIX}**`);
         if (!message.content.startsWith(prefix)) return;
     
         if (!message.member) message.member = await message.guild.fetchMember (message);
