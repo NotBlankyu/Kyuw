@@ -13,7 +13,9 @@ run : async (client, message, args) => {
     if(!message.member.hasPermission("BAN_MEMBERS") )
       return message.reply("Sorry, you don't have permissions to use this!");  
   }
-  
+  if(!args[0]){
+    message.channel.send('Please use welcome <set/info/on/off>')
+  }
   if(args[0]=='set'){
     if(!args[1]) return message.channel.send('Please provide a channel')
     Guild.findOne({ 

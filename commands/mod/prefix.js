@@ -10,7 +10,7 @@ name: 'prefix',
 
 run : async (client, message, args) => {
   if(message.member.id !=process.env.OWNER){
-    if(!message.member.hasPermission("ADMISTRATOR") )
+    if(!message.member.hasPermission("ADMINISTRATOR") )
       return message.reply("Sorry, you don't have permissions to use this!");  
   }
   

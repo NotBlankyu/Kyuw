@@ -1,4 +1,7 @@
 const Discord = require("discord.js");
+const moment = require("moment");
+moment.locale('pt-br')
+
 
 module.exports = {
   
@@ -8,6 +11,7 @@ module.exports = {
     usage: `serverinfo`,
   
   run : async (client, message, args) => {
+    
    let invite = await message.channel.createInvite(
   {
     maxAge: 86400, // maximum time for the invite, in milliseconds
@@ -17,6 +21,7 @@ module.exports = {
 )
    let user = message.author;
   let Embed = new Discord.MessageEmbed()
+  
 	.setColor('#0099ff')
 	.setTitle(message.guild)
 	.setURL(`https://discord.gg/${invite.code}`)
@@ -28,8 +33,8 @@ module.exports = {
 		{ name: 'Server Owner', value: message.guild.owner.user.username, inline: false },
     { name: 'Server Region', value: message.guild.region, inline: false },
     { name: 'Server Members', value: message.guild.members.cache.size, inline: false },
-    { name: 'Created At', value: message.guild.createdAt, inline: false },
-    { name: 'Joined At', value: message.member.joinedAt, inline: false },
+    { name: 'Created At', value: moment(message.guild.createdAt).locale('en-gb').format('LLL'), inline: false },
+    { name: 'Joined At', value:moment(message.member.joinedAt).locale('en-gb').format('LLL'), inline: false },
     
 	)
 	.setTimestamp()
