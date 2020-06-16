@@ -11,7 +11,7 @@ module.exports={
   
   run : async (client, message, args) => {
 
-    member = args[0] ||  message.member
+    member = message.mentions.users.first()||  message.member
     if(!message.mentions.users.first()){
       embedMember = message.member.user.username
     } else{
@@ -47,4 +47,4 @@ module.exports={
   }
 )}
 };
-                             
+                                
