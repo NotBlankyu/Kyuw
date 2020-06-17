@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 app.get("/", (request, response) => {
   const ping = new Date();
-  ping.setHours(ping.getHours() - 3);
+  ping.setHours(ping.getHours()+1);
   console.log(`Ping recebido às ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
   response.sendStatus(200);
 });

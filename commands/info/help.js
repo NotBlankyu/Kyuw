@@ -21,7 +21,7 @@ function helpMSG(client, message) {
         .setColor(process.env.COLOR)
         .setTitle('Help Menu')
         .setThumbnail(client.user.avatarURL())
-    .setDescription('Hi my default prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now. If you want see the custom prefix use ``prefix``')
+    .setDescription('Hi my default prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now. If you want see the custom prefix use ``prefix`` or just mention me.')
     .addFields(
 		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``',  },
 		{ name: 'Configuration', value: '``welcome``, ``prefix``',inline: true },
@@ -30,7 +30,7 @@ function helpMSG(client, message) {
   	{ name: 'Music', value: '``play``, ``stop``, ``leave``',inline: true },
     { name: 'Economy', value: '``balance``, ``daily``',inline: true })
     
-    .setFooter(`\n\nTo see more info about a specific command, please type \`${process.env.PREFIX}help <command>\` without the \`<>\``)
+    .setFooter(`\n\nTo see more info about a specific command, please use \`help <command>\` without the \`<>\``)
     .setAuthor(message.author.username, message.author.avatarURL());
         
     message.channel.send(embed);

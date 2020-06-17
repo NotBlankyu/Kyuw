@@ -6,7 +6,7 @@ module.exports={
 name: 'welcome',
     category: 'Configuration',
     description: 'Allows to change the welcome settings.',
-    usage: `welcome <set/info/on/off>`,
+    usage: `welcome <set/info/on/off> [gif]`,
 
 run : async (client, message, args) => {
   if(message.member.id !=process.env.OWNER){
@@ -50,13 +50,20 @@ run : async (client, message, args) => {
        }else{
          status = 'On'
        }
+       if(guild.welcomeGif==false){
+         gifembed = 'Off'
+       }else{
+         gifembed = 'On'
+       }
      const Embed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle( 'Welcome Channel Info')
-  .addField('Info',`Status: **${status}** \nCurrent Channel:<#${guild.welcomeID}>`)
+  .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
 	message.channel.send(Embed);
   })
 }else if(args[0]=='on'){
+
+  if(!args[1]){
      Guild.findOne({ 
         guildID: message.guild.id
       }, (err, guild) => {
@@ -64,8 +71,19 @@ run : async (client, message, args) => {
      guild.welcomeSwitch = true;
      guild.save().catch(err =>console.log(err));
      message.channel.send('Welcome message on!')
-  })
+  })}else if (args[1]== "gif"){
+    Guild.findOne({ 
+        guildID: message.guild.id
+      }, (err, guild) => {
+        if(err) console.log(err);
+     guild.welcomeGif = true;
+     guild.save().catch(err =>console.log(err));
+     message.channel.send('Gif on!')
+  }
+    )}
 }else if(args[0]=='off'){
+     if(!args[1]){
+     
      Guild.findOne({ 
         guildID: message.guild.id
       }, (err, guild) => {
@@ -74,8 +92,18 @@ run : async (client, message, args) => {
      guild.save().catch(err =>console.log(err));
      message.channel.send('Welcome message off!')
   })
+}else if(args[1]== "gif"){
+  Guild.findOne({ 
+        guildID: message.guild.id
+      }, (err, guild) => {
+        if(err) console.log(err);
+     guild.welcomeGif = false;
+     guild.save().catch(err =>console.log(err));
+     message.channel.send('Gif off!')
+  }
+    )
 }
   
-  
+} 
 }
 };

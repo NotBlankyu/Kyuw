@@ -6,6 +6,7 @@ const guildSchema = mongoose.Schema({
     guildName: String,
     welcomeID: String,
     welcomeSwitch: Boolean,
+    welcomeGif: Boolean,
     customPrefix: String,
     
 });
