@@ -3,7 +3,7 @@ const { stripIndent } = require('common-tags');
 
 module.exports = {
     name: 'help',
-    aliases: ['h'],
+    aliases: ['ajuda','h'],
     category: 'info',
     description: 'Displays bot help message.',
     usage: `help [commandName]`,
@@ -48,7 +48,7 @@ function getCMD(client, message, input) {
     }
 
     if (cmd.name) info = `**Command Name**: ${cmd.name}`
-    if (cmd.aliases) info += `\n**Aliases**: ${cmd.aliases.map(a => `\`{a}\``).join(', ')}`;
+    if (cmd.aliases) info += `\n**Aliases**: ${cmd.aliases.map(a => `\`${a}\``).join(', ')}`;
     if (cmd.description) info += `\n**Description**: ${cmd.description}`;
     if (cmd.usage) {
         info += `\n**Usage**: ${cmd.usage}`;

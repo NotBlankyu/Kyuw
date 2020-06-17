@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   
   name: 'l',
-    category: 'info',
+    category: 'TesteGround',
     description: 'Returns bot and API latency in milliseconds.',
     usage: `${(process.env.PREFIX)}ping`,
   

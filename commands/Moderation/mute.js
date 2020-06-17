@@ -3,6 +3,7 @@ const ms = require("ms");
 
 module.exports = {
   name: "mute",
+  aliases: ['mutar'],
   category: "Moderation",
   description: "To mute someone.",
   usage: `mute <@user> <time>`,

@@ -4,6 +4,7 @@ const Discord = require("discord.js");
 module.exports = {
   
   name: 'unmute',
+  aliases: ['desmutar'],
     category: 'Moderation',
     description: 'To unmute someone.',
     usage: `unmute <@user>`,

@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   
   name: 'unban',
+  aliases: ['desbanir'],
     category: 'Unban',
     description: 'To unban someone.',
     usage: `unban <userid>`,

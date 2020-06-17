@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 
 module.exports = {
   name: 'kiss',
-    category: 'fun',
+  aliases: ['beijar'],
+    category: 'Fun',
     description: 'Kiss someone else',
     usage: `kiss <@user>`,
   
