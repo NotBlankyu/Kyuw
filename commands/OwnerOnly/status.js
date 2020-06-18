@@ -12,12 +12,21 @@ module.exports = {
     return message.reply("Sorry, you don't have permissions to use this!");
   }
   let activity = "your soul."
-  if(args[0]){
-    activity = args.join(" ");
+  let type = 'WATCHING'
+  if(args[1]){
+    activity = args.slice(1).join(" ");
   }
-  client.user.setActivity(activity, { type: 'WATCHING' })
-  .then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
+  if(args[0]=='0'){
+     type = 'WATCHING'
+  }else if(args[0]=='1'){
+     type = 'LISTENING'
+  }else if(args[0]=='2'){
+     type = 'PLAYING'
+  }
+  client.user.setActivity(activity, { type: type })
+  .then(presence => console.log(`Activity set to \`${presence.activities[0].name}\``))
   .catch(console.error);
+  message.channel.send(`Status : \`${activity}\` \nType : \`${type}\``)
   }
 };
 
