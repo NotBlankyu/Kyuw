@@ -20,7 +20,7 @@ module.exports = {
     "https://i.imgur.com/MVS1ilF.gif"
   ];
   var random = list[Math.floor(Math.random() * list.length)]; 
+  message.delete({timeout: 2000})
   message.channel.send(`${message.author} kissed ${mention}`, {files: [random]})
-  message.react("706064356747771914");
   }
 };

@@ -11,7 +11,7 @@ module.exports = (client) => {
 
             if (pull.name) {
                 client.commands.set(pull.name, pull);
-                table.addRow(file, '✅ Loaded!');
+                
             } else {
                 table.addRow(file, '❌ -> Command failed to load, please check your work again!');
                 continue;
