@@ -23,7 +23,7 @@ function helpMSG(client, message) {
         .setThumbnail(client.user.avatarURL())
     .setDescription('Hi my default prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now. If you want see the custom prefix use ``prefix`` or just mention me.')
     .addFields(
-		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``',  },
+		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``, `announce`, `warn`, `warns`',  },
 		{ name: 'Configuration', value: '``welcome``, ``prefix``',inline: true },
     { name: 'Information', value: '``serverinfo``, ``ping``, ``invite``, ``avatar``',inline: true  },
     { name: 'Fun', value: '``kiss``, ``punch``',inline: true},
