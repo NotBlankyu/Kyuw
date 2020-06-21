@@ -8,7 +8,7 @@ module.exports = {
   name: 'userinfo',
     category: 'info',
     description: 'Shows the user information.',
-    usage: `serverinfo`,
+    usage: `serverinfo [@member/memberid]`,
   
   run : async (client, message, args) => {
 

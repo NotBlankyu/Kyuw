@@ -25,7 +25,7 @@ function helpMSG(client, message) {
     .addFields(
 		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``, `announce`, `warn`, `warns`',  },
 		{ name: 'Configuration', value: '``welcome``, ``prefix``',inline: true },
-    { name: 'Information', value: '``serverinfo``, ``ping``, ``invite``, ``avatar``',inline: true  },
+    { name: 'Information', value: '``serverinfo``, `userinfo`, ``ping``, ``invite``, ``avatar``',inline: true  },
     { name: 'Fun', value: '``kiss``, ``punch``',inline: true},
   	{ name: 'Music', value: '``play``, ``stop``, ``leave``',inline: true },
     { name: 'Economy', value: '``balance``, ``daily``',inline: true })
