@@ -11,7 +11,7 @@ module.exports = {
     usage: `serverinfo`,
   
   run : async (client, message, args) => {
-    
+   //creates the invite to link in the server name 
    let invite = await message.channel.createInvite(
   {
     maxAge: 86400, // maximum time for the invite, in milliseconds
@@ -19,7 +19,9 @@ module.exports = {
   },
   `Requested with command by ${message.author.tag}`
 )
-   let user = message.author;
+  //gets the user to see the joined date
+  let user = message.author;
+  //create the embed to send
   let Embed = new Discord.MessageEmbed()
   
 	.setColor('#0099ff')
@@ -39,6 +41,7 @@ module.exports = {
 	)
 	.setTimestamp()
 	.setFooter('dh', 'https://i.imgur.com/FPc54Tr.jpg');
+  //send it
   message.channel.send(Embed);
   }
 };

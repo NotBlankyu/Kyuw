@@ -8,6 +8,7 @@ module.exports = {
     usage: `punch <@user>`,
   
   run : async (client, message, args) => {
+  //See kiss command
   let mention = message.mentions.members.first();
   if (!mention) return message.reply("you can't kiss air dummy.")
   var list = [

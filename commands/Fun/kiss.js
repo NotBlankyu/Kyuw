@@ -8,8 +8,11 @@ module.exports = {
     usage: `kiss <@user>`,
   
   run : async (client, message, args) => {
+  //gets the member to show in the message
   let mention = message.mentions.members.first();
+  // return if there isnt a mention
   if (!mention) return message.reply("you can't kiss air dummy.")
+  //array with all the gif link
   var list = [
     "https://i.imgur.com/sGVgr74.gif",
     "https://i.imgur.com/YbNv10F.gif",
@@ -19,8 +22,9 @@ module.exports = {
     "https://i.imgur.com/NkfsJV7.gif",
     "https://i.imgur.com/MVS1ilF.gif"
   ];
+  //picks a random link
   var random = list[Math.floor(Math.random() * list.length)]; 
-  message.delete({timeout: 2000})
+  //sends the message with the random link attached
   message.channel.send(`${message.author} kissed ${mention}`, {files: [random]})
   }
 };
