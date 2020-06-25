@@ -29,19 +29,38 @@ module.exports = {
 	.setTimestamp()
 	.setFooter('dh', 'https://i.imgur.com/FPc54Tr.jpg');
 
-
-  //Permissions Embed
-  let EmbedPerms = new Discord.MessageEmbed()
+var permissions = member.permissions.toArray()
+let EmbedPerms = new Discord.MessageEmbed()
   .setColor('#0099ff')
-	.setTitle( member.user.username)
-	.setAuthor(message.author.username, message.author.avatarURL())
-	.setDescription('User Info')
-  .addFields(
-     { name: 'Permissions', value:member.permissions.toArray(), inline: false },
-    
-	)
-  //See what is the correct embed to send
-  if(message.content.includes("perms"))return message.channel.send(EmbedPerms);
-  message.channel.send(Embed);
+   .setTitle( member.user.username)
+   .setAuthor(message.author.username, message.author.avatarURL())
+   .setDescription('User Info')
+   .addField('Perms', permissions)
+
+  message.channel.send(Embed).then(msg => {
+        msg.react('➡️')
+        const collector1 = msg.createReactionCollector(filter1, { time: 30000 });
+        collector1.on('collect', (reaction, user) => {
+          msg.edit(EmbedPerms)
+          msg.reactions.removeAll();
+          msg.react('⬅️')
+      });
+      const collector2 = msg.createReactionCollector(filter2, { time: 30000 });
+        collector2.on('collect', (reaction, user) => {
+          msg.edit(Embed)
+          msg.reactions.removeAll();
+          msg.react('➡️')
+      });
+      });
+      
+  const filter1 = (reaction, user) => {
+	return reaction.emoji.name === '➡️' && user.id === message.author.id;
+};
+  const filter2 = (reaction, user) => {
+	return reaction.emoji.name === '⬅️' && user.id === message.author.id;
+};
+  
+  
   }
+  
 };
