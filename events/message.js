@@ -28,7 +28,6 @@ module.exports = async (client, message) => {
         let command = client.commands.get(cmd);
         if (!command){ 
           command = client.commands.get(client.aliases.get(cmd));
-          console.log(command)
           }
     
         if (command)

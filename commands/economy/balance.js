@@ -6,6 +6,7 @@ const User = require('../../models/user');
 module.exports={
   name: 'balance',
     category: 'economy',
+    aliases: ['bal'],
     description: 'Returns the balance of a user',
     usage: `${(process.env.PREFIX)}balance`,
   
