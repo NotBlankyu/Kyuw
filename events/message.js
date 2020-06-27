@@ -30,8 +30,9 @@ module.exports = async (client, message) => {
           command = client.commands.get(client.aliases.get(cmd));
           }
     
-        if (command)
+        if (command){
             command.run(client, message, args);
+        }else message.reply(`Sorry but i can't find this command.`)
       
      
     })

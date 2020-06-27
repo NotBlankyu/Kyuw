@@ -28,7 +28,7 @@ function helpMSG(client, message) {
     { name: 'Information', value: '``serverinfo``, `userinfo`, ``ping``, ``invite``, ``avatar``',inline: true  },
     { name: 'Fun', value: '``kiss``, ``punch``, ``dice``',inline: true},
   	{ name: 'Music', value: '``play``, ``stop``, ``leave``',inline: true },
-    { name: 'Economy', value: '``balance``, ``daily``, ``give``',inline: true })
+    { name: 'Economy', value: '``balance``, ``daily``, ``give``, ``steal``',inline: true })
     
     .setFooter(`\n\nTo see more info about a specific command, please use \`help <command>\` without the \`<>\``)
     .setAuthor(message.author.username, message.author.avatarURL());

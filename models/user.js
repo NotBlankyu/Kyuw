@@ -4,7 +4,8 @@ const guildSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     userID: String, 
     gold: Number, default: 0,
-    dailytime: Number
+    dailytime: Number,
+    criminalTime: Number,
     
   
     
