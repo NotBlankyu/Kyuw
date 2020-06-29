@@ -9,6 +9,7 @@ module.exports = {
     usage: `stop`,
   
   run : async (client, message, args) => {
+    return message.channel.send("Srry not working right now :(")
 function play(connection, message){
     var server = servers[message.guild.id];
     server.dispatcher = connection.play(ytdl(server.queue[0]), {filter:"audioonly"});

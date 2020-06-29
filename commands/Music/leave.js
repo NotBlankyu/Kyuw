@@ -7,6 +7,7 @@ module.exports = {
     usage: `leave`,
   
   run : async (client, message, args) => {
+    return message.channel.send("Srry not working right now :(")
 
     if(!message.member.voice.channel) return message.channel.send("You're not in a channel!")
     if(!message.guild.me.voice.channel) return message.channel.send("I'm not in a channel!");

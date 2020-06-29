@@ -6,7 +6,7 @@ module.exports = {
   name: 'unmute',
   aliases: ['desmutar'],
     category: 'Moderation',
-    description: 'To unmute someone.',
+    description: 'unmutes someone.',
     usage: `unmute <@user>`,
   
   run : async (client, message, args) => {

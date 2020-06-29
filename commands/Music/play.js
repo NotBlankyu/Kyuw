@@ -12,7 +12,7 @@ module.exports = {
   
   run : async (client, message, args) => {
   
-  
+  return message.channel.send("Srry not working right now :(")
   
   function play(connection, message){
     var server = servers[message.guild.id];
@@ -44,7 +44,7 @@ module.exports = {
   if(!message.guild.voiceConnection) message.member.voice.channel.join().then(function(connection){
     play(connection,message)     
     message.channel.send("Playing!")
-                                                                           })
+   })
     
   }  
 };

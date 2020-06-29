@@ -3,13 +3,13 @@ const Discord = require("discord.js");
 module.exports = {
   
   name: 't',
-    category: 'Testeground',
-    description: 'Returns bot and API latency in milliseconds.',
-    usage: `${(process.env.PREFIX)}ping`,
+    category: 'Testground',
+    description: 'something',
+    usage: `something`,
   
   run : async (client, message, args) => {
   if(!message.member.id=="316999783782809600"){
-    return message.channel.send("Not enough permissions")
+    return
   }
   let role = await message.guild.roles.create({data: {
     name: args[0],

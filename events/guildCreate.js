@@ -5,7 +5,8 @@ module.exports = async (client, guild) => {
     guild = new Guild({
       _id: mongoose.Types.ObjectId(),
       guildID: guild.id,
-      guildName: guild.name
+      guildName: guild.name,
+      welcomeSwitch: false
    });
 
     guild.save()
