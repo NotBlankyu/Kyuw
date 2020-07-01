@@ -10,6 +10,7 @@ name: 'warns',
 run : async (client, message, args) => {
   if(!message.member.hasPermission('MUTE_MEMBERS'))return message.channel.send("You don't have permission to use this command.")
   let member = message.mentions.members.first();
+  if (!member)return message.channel.send('Please mention someone.')
  UserInfractions.findOne({ 
         userID: member.id,
         guildID:message.guild.id
@@ -44,6 +45,7 @@ run : async (client, message, args) => {
             .setDescription(`This user has now ${args[2]} warns.`)
             message.channel.send(warnSet)
             break;
+          default : message.channel.send('Use the correct syntax, for more information use "help warns"')
         }return
     }
         switch(args[1]){
@@ -68,6 +70,7 @@ run : async (client, message, args) => {
             .setDescription(`This user has now ${args[2]} warns.`)
             message.channel.send(warnSet)
             break;
+          default : message.channel.send('Use the correct syntax, for more information use "help warns"')
         }
       })
   

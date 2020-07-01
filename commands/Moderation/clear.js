@@ -16,14 +16,19 @@ module.exports = {
     const fetched = await message.channel.messages.fetch({
       limit: deleteCount + 1
     });
-    message.channel.bulkDelete(fetched);
-    message.channel
+   message.channel.bulkDelete(fetched)
+      .catch(error =>{
+      return message.channel.send(`It wasn't possible to delete because : ${error}`)
+      }
+      ).then(
+      message.channel
       .send(`${args[0]} messages deleted from the chat`)
       .then(msg => {
         msg.delete({ timeout: 2000 });
       })
-      .catch(error =>
+      .catch(error =>{
         console.log(`It wasn't possible to delete because : ${error}`)
-      );
+        }
+      ))
   }
 };

@@ -74,7 +74,7 @@ run : async (client, message, args) => {
       if(mutetime){
         await member.roles
             .add(role)
-            .catch(error => message.reply( `Sorry ${message.author} I couldn't mute because of : ${error}` )
+            .catch(error => message.channel.send( `Sorry ${message.author} I couldn't mute because of : Missing MANAGE_ROLES permission` )
              );setTimeout(function() { member.roles.remove(role.id);}, ms(mutetime));
              const muteEmbed = new Discord.MessageEmbed()
                 .setTitle('🚫Mute🚫')
