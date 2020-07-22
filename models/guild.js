@@ -8,6 +8,7 @@ const guildSchema = mongoose.Schema({
     welcomeSwitch: Boolean,
     welcomeGif: Boolean,
     customPrefix: String,
+    musicChannel: String,
     
 });
 

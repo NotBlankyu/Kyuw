@@ -6,6 +6,7 @@ const guildSchema = mongoose.Schema({
     gold: Number, default: 0,
     dailytime: Number,
     criminalTime: Number,
+    votetime: Number,
     
   
     

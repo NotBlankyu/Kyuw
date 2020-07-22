@@ -11,7 +11,7 @@ const { Client, Collection } = require('discord.js');
 const { config } = require('dotenv');
 const fs = require('fs');
 const mongoose = require('mongoose');
-
+const DBL = require("dblapi.js");
 const nodemon = require('nodemon');
 
 const client = new Client();
@@ -43,3 +43,4 @@ fs.readdir('./events/', (err, files) => {
 
 client.mongoose.init();
 client.login(process.env.TOKEN);
+const dbl = new DBL(process.env.dbltoken, client);
