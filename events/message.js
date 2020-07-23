@@ -5,8 +5,16 @@ const discord = require('discord.js');
 module.exports = async (client, message) => {
 
       Guild.findOne({ 
-        guildID: message.member.guild.id
+        guildID: message.guild.id
       }, async (err, guild) => {
+        if(!guild){
+          const newGuild = new Guild({
+        _id: mongoose.Types.ObjectId(),
+        guildID: message.guild.id,
+        guildName: message.guild.name,
+          })  
+          newGuild.save().catch(err => console.log(err));
+        }
       
         let prefix = (process.env.PREFIX);
         if(guild.customPrefix) prefix = guild.customPrefix;

@@ -17,7 +17,7 @@ run : async (client, message, args) => {
     message.channel.send('Please use welcome <set/info/on/off>')
   }
   if(args[0]=='set'){
-    if(!args[1]) return message.channel.send('Please provide a channel')
+    if(!message.mentions.channels.first().id) return message.channel.send('Please provide a channel')
     Guild.findOne({ 
         guildID: message.guild.id
       }, (err, guild) => {
@@ -27,13 +27,13 @@ run : async (client, message, args) => {
         _id: mongoose.Types.ObjectId(),
         guildID: message.guild.id,
         guildName: message.guild.name,
-        welcomeID: args[1]
+        welcomeID: message.mentions.channels.first().id
           })
           
           newGuild.save().catch(err => console.log(err));
           message.channel.send('Welcome channel defined')
         }else{
-          guild.welcomeID = args[1];
+          guild.welcomeID = message.mentions.channels.first().id
           guild.save().catch(err =>console.log(err));
           message.channel.send('Welcome channel defined')
   

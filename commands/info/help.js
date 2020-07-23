@@ -21,14 +21,13 @@ function helpMSG(client, message) {
         .setColor(process.env.COLOR)
         .setTitle('Help Menu')
         .setThumbnail(client.user.avatarURL())
-    .setDescription('Hi my default prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now. If you want see the custom prefix use ``prefix`` or just mention me.')
+    .setDescription('Hi my default prefix is ``'+`${(process.env.PREFIX)}`+'`` and here you can find all the available commands right now. If you want to see the custom prefix use ``prefix`` or just mention me.')
     .addFields(
 		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``, `announce`, `warn`, `warns`',  },
-		{ name: 'Configuration', value: '``welcome``, ``prefix``',inline: true },
-    { name: 'Information', value: '``serverinfo``, `userinfo`, ``botinfo``, ping``, ``invite``, ``avatar``',inline: true  },
-    { name: 'Fun', value: '``kiss``, ``punch``, ``dice``',inline: true},
-  	{ name: 'Music', value: '``play``, ``stop``, ``leave``',inline: true },
-    { name: 'Economy', value: '``balance``, ``daily``, ``give``, ``steal``, ``vote``',inline: true })
+		{ name: 'Configuration', value: '``welcome``, ``prefix``',inline: false },
+    { name: 'Information', value: '``serverinfo``, `userinfo`, ``botinfo``, ``ping``, ``invite``, ``avatar``',inline: false  },
+    { name: 'Fun', value: '``kiss``, ``punch``, ``dice``',inline: false},
+    { name: 'Economy', value: '``balance``, ``daily``, ``give``, ``steal``, ``vote``',inline: false })
     
     .setFooter(`\n\nTo see more info about a specific command, please use \`help <command>\` without the \`<>\``)
     .setAuthor(message.author.username, message.author.avatarURL());

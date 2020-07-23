@@ -9,7 +9,7 @@ module.exports = {
   run: async (client, message, args) => {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
       return message.reply("Sorry, you don't have permissions to use this! \nMake sure you have the manage messages permission.");
-    let channel = message.guild.channels.cache.find(channel => channel == message.mentions.channels.first().id)
+
     let mention
     console.log(args[1])
     switch(args[1]){
@@ -25,6 +25,7 @@ module.exports = {
       }
 
     }
+        let channel = message.guild.channels.cache.find(channel => channel == message.mentions.channels.first().id)
     let msg = args.slice(2).join(" ")
     let embed = new Discord.MessageEmbed()
     .setTitle('Announcement')

@@ -36,7 +36,7 @@ run : async (client, message, args) => {
     .setTitle('⚠️Warn⚠️')
     .setDescription(`The user ${member} has been warned for:\n${motive}`)
     .setTimestamp()
-    
+ if(!member) return message.channel.send('Please mention a member!')   
  UserInfractions.findOne({ 
         userID: member.id,
         guildID:message.guild.id

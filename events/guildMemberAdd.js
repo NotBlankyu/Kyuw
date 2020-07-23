@@ -6,6 +6,15 @@ module.exports = async (client, member) => {
   Guild.findOne({ 
         guildID: member.guild.id
       }, (err, guild) => {
+        if(!guild){
+           guild = new Guild({
+        _id: mongoose.Types.ObjectId(),
+        guildID: member.guild.id,
+        guildName: member.guild.name,
+          })
+          
+          guild.save().catch(err => console.log(err));
+        }
         if(err) console.log(err);
     if(guild.welcomeSwitch==false) return;
     const channel = member.guild.channels.cache.find(channel => channel.id === guild.welcomeID);

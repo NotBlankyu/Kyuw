@@ -11,6 +11,7 @@ name: 'give',
 run : async (client, message, args) => {
   
   let value = args[1]
+  if(!parseInt(value,10))return message.channel.send('Especify a number')
   let target = message.mentions.members.first()
   if(!target)return message.channel.send("Please mention someone!") 
   if(!value)return message.channel.send("Please say a value!")
