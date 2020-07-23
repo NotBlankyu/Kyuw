@@ -18,7 +18,10 @@ module.exports = async (client, member) => {
         if(err) console.log(err);
     if(guild.welcomeSwitch==false) return;
     const channel = member.guild.channels.cache.find(channel => channel.id === guild.welcomeID);
-  if(!channel) return console.log("Channel doesn't exist"); 
+  if(!channel){
+  console.log(member.guild.id)
+  return console.log("Channel doesn't exist"); 
+  } 
   var list = [
     "https://media.giphy.com/media/dvreHY4p06lzVSDrvj/giphy.gif",
     "https://media.giphy.com/media/kbtysky2x8fZLW8osP/giphy.gif",

@@ -37,7 +37,7 @@ module.exports={
       //Creates and sends the embed
       const Embed = new Discord.MessageEmbed()
 	    .setColor('#0099ff')
-    	.setTitle( 'User Balance')
+    	.setTitle( `${embedMember} Balance`)
       .addField('Gold coins:',`${newUser.gold}`)
 	message.channel.send(Embed);
       

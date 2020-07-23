@@ -38,11 +38,14 @@ run : async (client, message, args) => {
         gold: 0,
       })
       newUser.gold += parseInt(value,10);
+      user.save().catch(err => console.log(err));
+      return message.channel.send(`You gave ${value} coins to ${target}.`)
     }  
     
       user.gold += parseInt(value,10)  
       user.save().catch(err => console.log(err));
+      return message.channel.send(`You gave ${value} coins to ${target}.`)
    })
-   message.channel.send(`You gave ${value} coins to ${target}.`)
+   
   }
 };
