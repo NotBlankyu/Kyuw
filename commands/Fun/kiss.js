@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const Guild = require('../../models/guild');
 
 module.exports = {
   name: 'kiss',
@@ -8,10 +9,26 @@ module.exports = {
     usage: `kiss <@user>`,
   
   run : async (client, message, args) => {
+    const guild = await Guild.findOne({ 
+      guildID: message.guild.id
+    }, (err, guild) => {
+      if(!guild){
+         guild = new Guild({
+      _id: mongoose.Types.ObjectId(),
+      guildID: message.guild.id,
+      guildName: message.guild.name,
+        })}
+    })
   //gets the member to show in the message
   let mention = message.mentions.members.first();
   // return if there isnt a mention
-  if (!mention) return message.reply("you can't kiss air dummy.")
+  if (!mention){
+    if(guild.lang=='pt'){
+      return message.reply("Não consegues beijar o ar...") 
+    }else{
+      return message.reply("You can't kiss air dummy.")
+    }
+  } 
   //array with all the gif link
   var list = [
     "https://i.imgur.com/sGVgr74.gif",
@@ -25,6 +42,11 @@ module.exports = {
   //picks a random link
   var random = list[Math.floor(Math.random() * list.length)]; 
   //sends the message with the random link attached
-  message.channel.send(`${message.author} kissed ${mention}`, {files: [random]})
+  if(guild.lang=='pt'){
+    message.channel.send(`${message.author} beijou ${mention}`, {files: [random]})
+  }else{
+    message.channel.send(`${message.author} kissed ${mention}`, {files: [random]})
+  }
+  
   }
 };

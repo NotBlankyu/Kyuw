@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require('mongoose');
 const User = require('../../models/user');
+const Guild = require('../../models/guild');
 
 module.exports={
 name: 'steal',
@@ -13,14 +14,42 @@ run : async (client, message, args) => {
   let value = parseInt(args[1],10)
   let target = message.mentions.members.first()
   let sucess
-  if(!target)return message.channel.send("Please mention someone!") 
-  if(!value)return message.channel.send("Please say a value!")
+  const guild = await Guild.findOne({ 
+    guildID: message.guild.id
+  }, (err, guild) => {
+    if(!guild){
+       guild = new Guild({
+    _id: mongoose.Types.ObjectId(),
+    guildID: message.guild.id,
+    guildName: message.guild.name,
+      })}
+  })
+  if(!target){
+    if(guild.lang=='pt'){
+      return message.channel.send("Mencione a pessoa que deseja roubar dinheiro!") 
+    }else{
+      return message.channel.send("Please mention someone!")
+    }
+    
+  }  
+  if(!value){
+    if(guild.lang=='pt'){
+      return message.channel.send("Forneça o valor desejado!")
+    }else{
+      return message.channel.send("Please say a value!")
+    }
+  } 
   await User.findOne({ 
         userID: target.id
       },(err, user) => {
        //If there isn't anything in the db create it 
       if(!user){
-       message.channel.send("You can't steal someone without money!")
+        if(guild.lang=='pt'){
+          message.channel.send("Não consegues roubar alguem sem dinheiro!")
+        }else{
+          message.channel.send("You can't steal someone without money!")
+        }
+       
     }  
     if(user.gold>=value){
             let random = Math.random();
@@ -34,13 +63,29 @@ run : async (client, message, args) => {
             }else chance=0.005
    
             if(random<chance){
+              if(guild.lang=='pt'){
+                message.reply(`Conseguiste roubar ${value} moedas de ${target.user.username}` )
+              }else{
+                message.reply(`You just stole ${value} coins from ${target.user.username}` )
+              }
               
-              message.reply(`You just stole ${value} coins from ${target.user.username}` )
               user.gold -= value;
               sucess = 1 
               user.save().catch(err => console.log(err));
-            }else message.reply("You failed")
-     }else message.channel.send("You can't steal something that doesn't exist!")
+            }else{
+              if(guild.lang=='pt'){
+                message.reply("Falhaste")
+              }else{
+                message.reply("You failed")
+              }
+            } 
+     }else{
+      if(guild.lang=='pt'){
+        message.reply("Roubar mais do que a pessoa têm não dá certo...")
+      }else{
+        message.channel.send("You can't steal something that doesn't exist!")
+      }
+     }
    })
    
     if(sucess==1){

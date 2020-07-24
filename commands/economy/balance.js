@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require('mongoose');
 const User = require('../../models/user');
+const Guild = require('../../models/guild');
 
 
 module.exports={
@@ -11,6 +12,16 @@ module.exports={
     usage: `${(process.env.PREFIX)}balance`,
   
   run : async (client, message, args) => {
+    const guild = await Guild.findOne({ 
+      guildID: message.guild.id
+    }, (err, guild) => {
+      if(!guild){
+         guild = new Guild({
+      _id: mongoose.Types.ObjectId(),
+      guildID: message.guild.id,
+      guildName: message.guild.name,
+        })}
+    })
     //gets the member by mention or just use the message  author
     member = message.mentions.users.first()||  message.member
     //Getting the username ready to put in the embed
@@ -19,37 +30,47 @@ module.exports={
     } else{
       embedMember = message.mentions.users.first().username
     }
-     //check the db for the id
-    User.findOne({ 
-        userID: member.id
-      }, (err, user) => {
-    //create a new entry in the db if thhere isnt anything already
+    const user = await User.findOne({ 
+      userID: member.id
+    }, (err, user) => {
       if(!user){
-          const newUser = new User({
-        _id: mongoose.Types.ObjectId(),
-        userID: member.id,
-        gold: 0,
-        dailytime:Date.now()
-        
-        
-      }) 
-      newUser.save().catch(err => console.log(err))
-      //Creates and sends the embed
-      const Embed = new Discord.MessageEmbed()
-	    .setColor('#0099ff')
-    	.setTitle( `${embedMember} Balance`)
-      .addField('Gold coins:',`${newUser.gold}`)
-	message.channel.send(Embed);
+         user = new User({
+      _id: mongoose.Types.ObjectId(),
+      userID: member.id,
+      gold: 0,
+        })}
+    })
+    if(!user){
+      if(guild.lang == 'pt'){
+        const Embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle( `Saldo de ${embedMember}`)
+        .addField('Moedas de ouro:',`0`)
+        message.channel.send(Embed);
+      }else{
+        const Embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle( `${embedMember} Balance`)
+        .addField('Gold coins:',`0`)
+        message.channel.send(Embed);
+      }
       
+	
+    }else{ 
+      if(guild.lang == 'pt'){
+      const Embed = new Discord.MessageEmbed()
+      .setColor('#0099ff')
+      .setTitle( `Saldo de ${embedMember}`)
+      .addField('Moedas de ouro:',`${user.gold}`)
+      message.channel.send(Embed);
     }else{
-      //Creates and sends the embed
-  const Embed = new Discord.MessageEmbed()
-  	.setColor('#0099ff')
-  	.setTitle( `${embedMember} Balance`)
-    .addField('Gold coins:',`${user.gold}`)
-	message.channel.send(Embed);
-    }             
-  }
-)}
+      const Embed = new Discord.MessageEmbed()
+      .setColor('#0099ff')
+      .setTitle( `${embedMember} Balance`)
+      .addField('Gold coins:',`${user.gold}`)
+      message.channel.send(Embed);
+    }
+    }  
+}
 };
                                 

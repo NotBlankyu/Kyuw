@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const moment = require("moment");
+const Guild = require('../../models/guild');
 
 
 module.exports = {
@@ -20,7 +21,42 @@ module.exports = {
 )
   //gets the user to see the joined date
   let user = message.author;
-  //create the embed to send
+
+  const guild = await Guild.findOne({ 
+    guildID: message.guild.id
+  }, (err, guild) => {
+    if(!guild){
+       guild = new Guild({
+    _id: mongoose.Types.ObjectId(),
+    guildID: message.guild.id,
+    guildName: message.guild.name,
+      })}
+  })
+  if(guild.lang=='pt'){
+    //create the embed to send
+  let Embed = new Discord.MessageEmbed()
+  
+	.setColor('#0099ff')
+	.setTitle(message.guild)
+	.setURL(`https://discord.gg/${invite.code}`)
+	.setAuthor(message.author.username, message.author.avatarURL())
+	.setDescription('Server Info')
+	.setThumbnail(`https://cdn.discordapp.com/icons/${message.guild.id}/${message.guild.icon}.png`)
+	.addFields(
+		{ name: 'Id do Servidor', value: message.guild.id, inline: false },
+		{ name: 'Dono do Servidor', value: message.guild.owner.user.username, inline: false },
+    { name: 'Região do Servidor', value: message.guild.region, inline: false },
+    { name: 'Membros do Servidor', value: message.guild.members.cache.size, inline: false },
+    { name: 'Data de Criaão', value: moment(message.guild.createdAt).locale('pt-pt').format('LLL'), inline: false },
+    { name: 'Data de Entrada', value:moment(message.member.joinedAt).locale('pt-pt').format('LLL'), inline: false },
+    
+	)
+	.setTimestamp()
+	.setFooter('dh', 'https://i.imgur.com/FPc54Tr.jpg');
+  //send it
+  message.channel.send(Embed);
+  }else{
+    //create the embed to send
   let Embed = new Discord.MessageEmbed()
   
 	.setColor('#0099ff')
@@ -42,5 +78,7 @@ module.exports = {
 	.setFooter('dh', 'https://i.imgur.com/FPc54Tr.jpg');
   //send it
   message.channel.send(Embed);
+  }
+  
   }
 };

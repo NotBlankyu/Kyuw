@@ -16,34 +16,42 @@ run : async (client, message, args) => {
   if(!args[0]){
     message.channel.send('Please use welcome <set/info/on/off>')
   }
+  const guild = await Guild.findOne({ 
+    guildID: message.guild.id
+  }, (err, guild) => {
+    if(!guild){
+       guild = new Guild({
+    _id: mongoose.Types.ObjectId(),
+    guildID: message.guild.id,
+    guildName: message.guild.name,
+      })}
+  })
   if(args[0]=='set'){
-    if(!message.mentions.channels.first().id) return message.channel.send('Please provide a channel')
-    Guild.findOne({ 
-        guildID: message.guild.id
-      }, (err, guild) => {
-        if(err) console.log(err);
-        if(!guild){
-          const newGuild = new Guild({
-        _id: mongoose.Types.ObjectId(),
-        guildID: message.guild.id,
-        guildName: message.guild.name,
-        welcomeID: message.mentions.channels.first().id
-          })
-          
-          newGuild.save().catch(err => console.log(err));
-          message.channel.send('Welcome channel defined')
-        }else{
-          guild.welcomeID = message.mentions.channels.first().id
-          guild.save().catch(err =>console.log(err));
-          message.channel.send('Welcome channel defined')
-  
+    if(!message.mentions.channels.first().id){
+      if(guild.lang){
+        if(guild.lang == 'pt'){
+          message.channel.send('Forneça um canal')
+        }else if(guild.lang == 'eng'){
+          message.channel.send('Please provide a channel')
+        }
+      }else{
+        return message.channel.send('Please provide a channel')
       }
-    })
+      
+    } 
+    guild.welcomeID = message.mentions.channels.first().id
+    guild.save().catch(err =>console.log(err));
+    if(guild.lang){
+      if(guild.lang == 'pt'){
+        message.channel.send('Chat de boas vindas definido')
+      }else if(guild.lang == 'eng'){
+        message.channel.send('Welcome channel defined')
+      }
+    }else{
+      return message.channel.send('Welcome channel defined')
+    }
+    
   }else if(args[0]=='info'){
-     Guild.findOne({ 
-        guildID: message.guild.id
-      }, (err, guild) => {
-        if(err) console.log(err);
        let status;
        if(guild.welcomeSwitch==false){
          status = 'Off'
@@ -54,54 +62,88 @@ run : async (client, message, args) => {
          gifembed = 'Off'
        }else{
          gifembed = 'On'
-       }
-     const Embed = new Discord.MessageEmbed()
-	.setColor('#0099ff')
-	.setTitle( 'Welcome Channel Info')
-  .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
-	message.channel.send(Embed);
-  })
+       }if(guild.lang){
+        if(guild.lang == 'pt'){
+          const Embed = new Discord.MessageEmbed()
+          .setColor('#0099ff')
+          .setTitle( 'Informações sobre o canal de boas-vindas')
+          .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCanal atual:<#${guild.welcomeID}>`)
+          message.channel.send(Embed);
+        }else if(guild.lang == 'eng'){
+          const Embed = new Discord.MessageEmbed()
+    	.setColor('#0099ff')
+	    .setTitle( 'Welcome Channel Info')
+      .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
+      message.channel.send(Embed);
+        }
+      }else{
+        const Embed = new Discord.MessageEmbed()
+    	.setColor('#0099ff')
+	    .setTitle( 'Welcome Channel Info')
+      .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
+      message.channel.send(Embed);
+      }
+      if(guild.lang){
+        if(guild.lang == 'pt'){
+        }else if(guild.lang == 'eng'){
+        }
+      }else{
+      }
+    
+	  
 }else if(args[0]=='on'){
 
   if(!args[1]){
-     Guild.findOne({ 
-        guildID: message.guild.id
-      }, (err, guild) => {
-        if(err) console.log(err);
      guild.welcomeSwitch = true;
      guild.save().catch(err =>console.log(err));
-     message.channel.send('Welcome message on!')
-  })}else if (args[1]== "gif"){
-    Guild.findOne({ 
-        guildID: message.guild.id
-      }, (err, guild) => {
-        if(err) console.log(err);
+     if(guild.lang){
+      if(guild.lang == 'pt'){
+        message.channel.send('Mensagem de boas-vindas ligada!')
+      }else if(guild.lang == 'eng'){
+        message.channel.send('Welcome message on!')
+      }
+    }else{
+      message.channel.send('Welcome message on!')
+    }
+     
+  }else if (args[1]== "gif"){
      guild.welcomeGif = true;
      guild.save().catch(err =>console.log(err));
-     message.channel.send('Gif on!')
+     if(guild.lang){
+      if(guild.lang == 'pt'){
+        message.channel.send('Gif ligado!')
+      }else if(guild.lang == 'eng'){
+        message.channel.send('Gif on!')
+      }
+    }else{
+      message.channel.send('Gif on!')
+    }
   }
-    )}
 }else if(args[0]=='off'){
      if(!args[1]){
-     
-     Guild.findOne({ 
-        guildID: message.guild.id
-      }, (err, guild) => {
-        if(err) console.log(err);
      guild.welcomeSwitch = false;
      guild.save().catch(err =>console.log(err));
-     message.channel.send('Welcome message off!')
-  })
+     if(guild.lang){
+      if(guild.lang == 'pt'){
+        message.channel.send('Mensagem de boas-vindas desligada!')
+      }else if(guild.lang == 'eng'){
+        message.channel.send('Welcome message off!')
+      }
+    }else{
+      message.channel.send('Welcome message off!')
+    }
 }else if(args[1]== "gif"){
-  Guild.findOne({ 
-        guildID: message.guild.id
-      }, (err, guild) => {
-        if(err) console.log(err);
      guild.welcomeGif = false;
      guild.save().catch(err =>console.log(err));
-     message.channel.send('Gif off!')
-  }
-    )
+     if(guild.lang){
+      if(guild.lang == 'pt'){
+        message.channel.send('Gif desligado!')
+      }else if(guild.lang == 'eng'){
+        message.channel.send('Gif off!')
+      }
+    }else{
+      message.channel.send('Gif off!')
+    }
 }
   
 } 
