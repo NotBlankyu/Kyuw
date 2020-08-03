@@ -9,6 +9,7 @@ name: 'language',
     usage: `language`,
 
 run : async (client, message, args) => {
+  
     const guild = await Guild.findOne({ 
         guildID: message.guild.id
       }, (err, guild) => {
@@ -19,6 +20,13 @@ run : async (client, message, args) => {
         guildName: message.guild.name,
           })}
       })
+      if (!message.member.hasPermission("MANAGE_GUILD")){
+          if(guild.lang=='pt'){
+            return message.reply("Desculpa, não tens permissões suficientes para usar isto! \nVerifica se tens permissao de configurar o servidor.");
+          }else{
+            return message.reply("Sorry, you don't have permissions to use this! \nMake sure you have manage server permission.");
+          }
+      }
       switch(guild.lang){
           case 'pt':  
                 guild.lang = "eng"

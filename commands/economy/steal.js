@@ -50,8 +50,7 @@ run : async (client, message, args) => {
           message.channel.send("You can't steal someone without money!")
         }
        
-    }  
-    if(user.gold>=value){
+    }else if(user.gold>=value){
             let random = Math.random();
             let chance
             if(value<=100){

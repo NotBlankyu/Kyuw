@@ -30,6 +30,7 @@ module.exports = {
   var list = [
     "https://media.giphy.com/media/arbHBoiUWUgmc/giphy.gif",
     "https://media.giphy.com/media/yo3TC0yeHd53G/giphy.gif",
+    "https://tenor.com/view/brown-cony-sorry-punch-gif-13627939.gif"
     
   ];
   var random = list[Math.floor(Math.random() * list.length)]; 

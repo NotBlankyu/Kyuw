@@ -37,9 +37,9 @@ async function helpMSG(client, message) {
     .addFields(
 		{ name: 'Moderação', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``, `announce`, `warn`, `warns`',  },
 		{ name: 'Configuração', value: '``welcome``, ``prefix``, ``language``',inline: false },
-    { name: 'Informação', value: '``serverinfo``, `userinfo`, ``botinfo``, ``ping``, ``invite``, ``avatar``',inline: false  },
-    { name: 'Diversão', value: '``kiss``, ``punch``, ``dice``',inline: false},
-    { name: 'Economia', value: '``balance``, ``daily``, ``give``, ``steal``, ``vote``',inline: false })
+    { name: 'Informação', value: '``serverinfo``, `userinfo`, ``botinfo``, ``ping``, ``invite``, ``avatar``, ``osu``, ``osuset``',inline: false  },
+    { name: 'Diversão', value: '``kiss``, ``punch``, ``dice``, ``8ball``',inline: false},
+    { name: 'Economia', value: '``balance``, ``daily``, ``give``, ``steal``, ``vote``, ``slots``',inline: false })
     
     .setFooter(`\n\nPara mais informaçao sobre um comando especifico, usa \`help <command>\` sem o \`<>\``)
     .setAuthor(message.author.username, message.author.avatarURL());
@@ -54,9 +54,9 @@ async function helpMSG(client, message) {
     .addFields(
 		{ name: 'Moderation', value: '``ban``, ``unban``, ``mute``, ``unmute``, ``clear``, `announce`, `warn`, `warns`',  },
 		{ name: 'Configuration', value: '``welcome``, ``prefix``, ``language``',inline: false },
-    { name: 'Information', value: '``serverinfo``, `userinfo`, ``botinfo``, ``ping``, ``invite``, ``avatar``',inline: false  },
-    { name: 'Fun', value: '``kiss``, ``punch``, ``dice``',inline: false},
-    { name: 'Economy', value: '``balance``, ``daily``, ``give``, ``steal``, ``vote``',inline: false })
+    { name: 'Information', value: '``serverinfo``, `userinfo`, ``botinfo``, ``ping``, ``invite``, ``avatar``, ``osu``, ``osuset``',inline: false  },
+    { name: 'Fun', value: '``kiss``, ``punch``, ``dice``, ``8ball``',inline: false},
+    { name: 'Economy', value: '``balance``, ``daily``, ``give``, ``steal``, ``vote``, ``slots``',inline: false })
     
     .setFooter(`\n\nTo see more info about a specific command, please use \`help <command>\` without the \`<>\``)
     .setAuthor(message.author.username, message.author.avatarURL());

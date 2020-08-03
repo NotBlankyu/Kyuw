@@ -9,11 +9,8 @@ name: 'prefix',
     usage: `prefix [set <newprefix>]`,
 
 run : async (client, message, args) => {
-  //checks permissions
-  if(message.member.id !=process.env.OWNER){
-    if(!message.member.hasPermission("ADMINISTRATOR") )
-      return message.reply("Sorry, you don't have permissions to use this!");  
-  }
+  
+  
  const guild = await Guild.findOne({ 
     guildID: message.guild.id
   }, (err, guild) => {
@@ -24,6 +21,16 @@ run : async (client, message, args) => {
     guildName: message.guild.name,
       })}
   })
+//checks permissions
+  if(message.member.id !=process.env.OWNER){
+    if (!message.member.hasPermission("MANAGE_GUILD")){
+          if(guild.lang=='pt'){
+            return message.reply("Desculpa, não tens permissões suficientes para usar isto! \nVerifica se tens permissao de configurar o servidor.");
+          }else{
+            return message.reply("Sorry, you don't have permissions to use this! \nMake sure you have manage server permission.");
+          }
+      }
+  }
   // checks if we want only the info or to change the prefix
   if(args[0]=='set'){
     //checks if there is anything to use for the new prefix

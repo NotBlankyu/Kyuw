@@ -11,6 +11,7 @@ name: 'vote',
     usage: `vote`,
 
 run : async (client, message, args) => {
+  try{
   const dbl = new DBL(process.env.dbltoken, client);
   let user = await User.findOne({ 
     userID: message.member.id
@@ -72,6 +73,8 @@ const guild = await Guild.findOne({
     }
 });
   }
-  
+  } catch (err) {
+    message.channel.send('An error happen connecting to dbl, please try again later.')
+  } 
   }
 };

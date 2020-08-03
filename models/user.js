@@ -7,6 +7,7 @@ const guildSchema = mongoose.Schema({
     dailytime: Number,
     criminalTime: Number,
     votetime: Number,
+    osu: String,
     
   
     

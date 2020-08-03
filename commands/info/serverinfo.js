@@ -47,7 +47,7 @@ module.exports = {
 		{ name: 'Dono do Servidor', value: message.guild.owner.user.username, inline: false },
     { name: 'Região do Servidor', value: message.guild.region, inline: false },
     { name: 'Membros do Servidor', value: message.guild.members.cache.size, inline: false },
-    { name: 'Data de Criaão', value: moment(message.guild.createdAt).locale('pt-pt').format('LLL'), inline: false },
+    { name: 'Data de Criação', value: moment(message.guild.createdAt).locale('pt-pt').format('LLL'), inline: false },
     { name: 'Data de Entrada', value:moment(message.member.joinedAt).locale('pt-pt').format('LLL'), inline: false },
     
 	)
