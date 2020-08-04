@@ -6,11 +6,11 @@ module.exports={
 name: 'welcome',
     category: 'Configuration',
     description: 'Allows to change the welcome settings.',
-    usage: `welcome <set/info/on/off> [gif]`,
+    usage: `welcome <set/info/on/off> [img]`,
 
 run : async (client, message, args) => {
   if(message.member.id !=process.env.OWNER){
-    if(!message.member.hasPermission("BAN_MEMBERS") )
+    if(!message.member.hasPermission("MANAGE_GUILD") )
       return message.reply("Sorry, you don't have permissions to use this!");  
   }
   if(!args[0]){
@@ -58,29 +58,29 @@ run : async (client, message, args) => {
        }else{
          status = 'On'
        }
-       if(guild.welcomeGif==false){
-         gifembed = 'Off'
-       }else{
+       if(guild.welcomeGif==true){
          gifembed = 'On'
+       }else{
+         gifembed = 'Off'
        }if(guild.lang){
         if(guild.lang == 'pt'){
           const Embed = new Discord.MessageEmbed()
           .setColor('#0099ff')
           .setTitle( 'Informações sobre o canal de boas-vindas')
-          .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCanal atual:<#${guild.welcomeID}>`)
+          .addField('Info',`Status: **${status}**\nImg:**${gifembed}** \nCanal atual:<#${guild.welcomeID}>`)
           message.channel.send(Embed);
         }else if(guild.lang == 'eng'){
           const Embed = new Discord.MessageEmbed()
     	.setColor('#0099ff')
 	    .setTitle( 'Welcome Channel Info')
-      .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
+      .addField('Info',`Status: **${status}**\nImg:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
       message.channel.send(Embed);
         }
       }else{
         const Embed = new Discord.MessageEmbed()
     	.setColor('#0099ff')
 	    .setTitle( 'Welcome Channel Info')
-      .addField('Info',`Status: **${status}**\nGif:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
+      .addField('Info',`Status: **${status}**\nImg:**${gifembed}** \nCurrent Channel:<#${guild.welcomeID}>`)
       message.channel.send(Embed);
       }
       if(guild.lang){
@@ -106,17 +106,17 @@ run : async (client, message, args) => {
       message.channel.send('Welcome message on!')
     }
      
-  }else if (args[1]== "gif"){
+  }else if (args[1]== "img"){
      guild.welcomeGif = true;
      guild.save().catch(err =>console.log(err));
      if(guild.lang){
       if(guild.lang == 'pt'){
-        message.channel.send('Gif ligado!')
+        message.channel.send('Imagem ligada!')
       }else if(guild.lang == 'eng'){
-        message.channel.send('Gif on!')
+        message.channel.send('Image on!')
       }
     }else{
-      message.channel.send('Gif on!')
+      message.channel.send('Image on!')
     }
   }
 }else if(args[0]=='off'){
@@ -132,17 +132,17 @@ run : async (client, message, args) => {
     }else{
       message.channel.send('Welcome message off!')
     }
-}else if(args[1]== "gif"){
+}else if(args[1]== "img"){
      guild.welcomeGif = false;
      guild.save().catch(err =>console.log(err));
      if(guild.lang){
       if(guild.lang == 'pt'){
-        message.channel.send('Gif desligado!')
+        message.channel.send('Imagem desligada!')
       }else if(guild.lang == 'eng'){
-        message.channel.send('Gif off!')
+        message.channel.send('Image off!')
       }
     }else{
-      message.channel.send('Gif off!')
+      message.channel.send('Image off!')
     }
 }
   

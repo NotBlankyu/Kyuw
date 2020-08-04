@@ -13,7 +13,9 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const DBL = require("dblapi.js");
 const nodemon = require('nodemon');
-
+const { registerFont } = require('canvas');
+registerFont('./fonts/Recursive/recursive.ttf', { family: 'recursive' });
+registerFont('./fonts/Open_Sans/OpenSans-SemiBold.ttf', { family: 'opensans' });
 const client = new Client();
 
 client.commands = new Collection();
